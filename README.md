@@ -29,3 +29,17 @@ export default [
   ...tseslint.configs.recommended,
 ];
 ```
+
+### Step3: Update eslint config file, run lint and check the result
+- Add a rule for console.log to eslint.config.js
+```
+{
+  rules: { 'no-console': 'warn' }
+}
+```
+- Add a script to run lint to package.json `"lint": "eslint"`
+- Add console.log to a ts file
+- Run `yarn lint`
+- Result
+![alt text](./readme-files/eslint-console.png)
+
