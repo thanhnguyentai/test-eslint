@@ -52,11 +52,55 @@ export default {
   printWidth: 120,
   semi: false,
   singleQuote: true,
-  trailingComma: 'none',
+  trailingComma: 'es5',
   tabWidth: 2,
 }
 ```
 - Add script to run prettier: `"format": "prettier --write \"**/*.{js,ts}\""`
 - Run `yarn format` to format all js and ts files in the project
 
-// eslint-config-prettier, eslint-plugin-prettier
+### Step 5: Combine eslint and prettier together
+This will help eslint to use prettier rules while linting \
+It will be helpful when using eslint extension that does highlight for unformatted text
+
+We will:
+- Install some packages: `yarn add -D eslint-config-prettier eslint-plugin-prettier`
+- Use plugins in eslint config\
+By default, all unformatted code will be `error` when running lint.
+And we can change it to `warning` for some rules by add `prettier/prettier` rule
+> import prettierRecommended from 'eslint-plugin-prettier/recommended'
+```
+export default [
+  ...
+  js.configs.recommended,
+  prettierRecommended,
+  {
+    rules: {
+      ...
+      'prettier/prettier': [
+        'warn',
+        {
+          semi: false,
+          singleQuote: true,
+        }
+      ]
+    }
+  }
+]
+```
+- Should use `eslint-config-prettier` to disable all formatting-related ESLint rules that may conflict with prettier rules
+- Should put `eslint-config-prettier` after other plugins to override
+> import eslintConfigPrettier from 'eslint-config-prettier'
+```
+export default [
+  ...
+  pluginJs.configs.recommended,
+  prettierRecommended,
+  eslintConfigPrettier,
+  {
+    rules: {
+      ...
+    }
+  },
+]
+```
