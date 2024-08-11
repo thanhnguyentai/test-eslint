@@ -6,7 +6,7 @@ All steps will be listed here to rework later
 ### Step 1: Init the project by using vitejs to create
 > yarn create vite example1 -- --template vanilla-ts
 
-### Step2: Add eslint
+### Step 2: Add eslint
 > yarn create @eslint/config
 Select: 
 - No framework
@@ -30,7 +30,7 @@ export default [
 ];
 ```
 
-### Step3: Update eslint config file, run lint and check the result
+### Step 3: Update eslint config file, run lint and check the result
 - Add a rule for console.log to eslint.config.js
 ```
 {
@@ -43,3 +43,20 @@ export default [
 - Result
 ![alt text](./readme-files/eslint-console.png)
 
+### Step 4: Add prettier to format code
+- Install required package: prettier
+- Add `prettier.config.js` and fill some simple rule:
+```
+export default {
+  arrowParens: 'avoid',
+  printWidth: 120,
+  semi: false,
+  singleQuote: true,
+  trailingComma: 'none',
+  tabWidth: 2,
+}
+```
+- Add script to run prettier: `"format": "prettier --write \"**/*.{js,ts}\""`
+- Run `yarn format` to format all js and ts files in the project
+
+// eslint-config-prettier, eslint-plugin-prettier
