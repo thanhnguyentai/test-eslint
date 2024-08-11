@@ -88,19 +88,6 @@ export default [
   }
 ]
 ```
-- Should use `eslint-config-prettier` to disable all formatting-related ESLint rules that may conflict with prettier rules
-- Should put `eslint-config-prettier` after other plugins to override
-> import eslintConfigPrettier from 'eslint-config-prettier'
-```
-export default [
-  ...
-  pluginJs.configs.recommended,
-  prettierRecommended,
-  eslintConfigPrettier,
-  {
-    rules: {
-      ...
-    }
-  },
-]
-```
+- `eslint-config-prettier` to disable all formatting-related ESLint rules that may conflict with prettier rules.\
+It is automatically enabled when using `eslint-plugin-prettier`
+- Should put `eslint-plugin-prettier` after other plugins to override
